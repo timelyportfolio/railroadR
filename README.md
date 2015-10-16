@@ -1,27 +1,60 @@
-
-# railroadR
+railroadR
+=========
 
 > Railroad Diagrams for R
 
-[![Linux Build Status](https://travis-ci.org//railroadR.svg?branch=master)](https://travis-ci.org//railroadR)
+[![Linux Build
+Status](https://travis-ci.org//railroadR.svg?branch=master)](https://travis-ci.org//railroadR)
 [![](http://www.r-pkg.org/badges/version/railroadR)](http://www.r-pkg.org/pkg/railroadR)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/railroadR)](http://www.r-pkg.org/pkg/railroadR)
+[![CRAN RStudio mirror
+downloads](http://cranlogs.r-pkg.org/badges/railroadR)](http://www.r-pkg.org/pkg/railroadR)
 
+Generate railroad diagrams in R with the convenience and infrastructure
+of htmlwidgets, or eventually create static SVG railroad diagrams for
+use in non-htmlwidget situations. Thanks so much to Tab Atkins, Jr. for
+the JavaScript library
+[railroad-diagrams](https://github.com/tabatkins/railroad-diagrams) that
+actually does all the hard work.
 
-Generate railroad diagrams in R with the convenience and infrastructure of htmlwidgets, or create static SVG railroad diagrams for use in non-htmlwidget situations.
+Installation
+------------
 
-## Installation
+    devtools::install_github("timelyportfolio/railroadR")
 
-```r
-devtools::install_github("/railroadR")
-```
+Usage
+-----
 
-## Usage
+    library(railroadR)
 
-```r
-library(railroadR)
-```
+    railroad(
+      Choice(0, 'u', 'U'),
+        Choice(0, 'r', 'R'),
+        Choice(0, 'l', 'L'),
+        '(',
+        Choice(1,
+            Optional(NonTerminal('WS')),
+            Sequence(
+                Optional(NonTerminal('WS')),
+                NonTerminal('STRING', '#string'),
+                Optional(NonTerminal('WS'))),
+            Sequence(
+                Optional(NonTerminal('WS')),
+                OneOrMore(
+                    Choice(0,
+                        NonTerminal('not " \' ( ) WS or NPC'),
+              NonTerminal('escape'))),
+              Optional(NonTerminal('WS'))
+                )
+            ),
+      ')'
+    )
 
-## License
+License
+-------
 
-MIT + file LICENSE © [Kenton Russell](https://github.com/).
+MIT + file LICENSE © [Kenton
+Russell](https://github.com/timelyportfolio/railroadR).
+
+railroad-diagrams JavaScript library
+[CC0](http://creativecommons.org/publicdomain/zero/1.0/) LICENSE © [Tab
+Atkins, Jr.](https://github.com/tabatkins/railroad-diagrams)
