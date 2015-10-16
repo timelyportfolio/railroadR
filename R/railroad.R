@@ -2,7 +2,7 @@
 #'
 #' Create interactive railroad diagrams for use in html.
 #' 
-#' @param diagram string or file connection providing the diagram spec
+#' @param ... string arguments to form the diagram spec
 #' @param width,height width and height in any valid CSS unit for
 #'                the htmlwidget container
 #'
@@ -10,17 +10,15 @@
 #' @import htmlwidgets
 #'
 #' @export
-railroad <- function(diagram, width = NULL, height = NULL) {
+railroad <- function(..., width = NULL, height = NULL) {
+  diagram <- lazyeval::auto_name(lazyeval::lazy_dots(...))
   
-  # Check for a connection or file
-  if (inherits(diagram, "connection") || file.exists(diagram)){
-    diagram <- readLines(diagram, warn = FALSE)
-    diagram <- paste0(diagram, collapse = "\n")
-  }
-
   # forward options using x
   x = list(
-    diagram = diagram
+    diagram = unname(lapply(
+      diagram,
+      function(x) as.character(unclass(x)[1])
+    ))
   )
 
   # create widget

@@ -14,7 +14,15 @@ HTMLWidgets.widget({
     // clean out el for dynamic / Shiny situations
     el.innerHTML = ""
     
-    Diagram(x.diagram).addTo(el);
+    Diagram.apply(null,x.diagram.map(function(d){
+        var f_;
+        try { 
+          f_ = eval(d);
+        } catch(e){
+         return d; 
+        }
+        return f_;
+      })).addTo(el)
   },
 
   resize: function(el, width, height, instance) {

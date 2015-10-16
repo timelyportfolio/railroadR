@@ -22,7 +22,8 @@ LazyData: true
 URL: https://github.com/timelyportfolio/railroadR
 BugReports: https://github.com/timelyportfolio/railroadR/issues
 Imports:
-    htmlwidgets
+    htmlwidgets,
+    lazyeval
 Suggests: 
     testthat,
     V8

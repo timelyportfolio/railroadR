@@ -4,10 +4,10 @@
 \alias{railroad}
 \title{Railroad Diagram}
 \usage{
-railroad(diagram, width = NULL, height = NULL)
+railroad(..., width = NULL, height = NULL)
 }
 \arguments{
-\item{diagram}{string or file connection providing the diagram spec}
+\item{...}{string arguments to form the diagram spec}
 
 \item{width,height}{width and height in any valid CSS unit for
                the htmlwidget container}
@@ -22,22 +22,55 @@ library(railroadR)
 #   https://github.com/tabatkins/railroad-diagrams/blob/master/example.html
 
 railroad(
-  "NonTerminal('IDENT'), '('"
+  NonTerminal('IDENT'),
+  '('
 )
 
-# can also provide a file or connection
+railroad('@', NonTerminal('IDENT') )
+
+railroad('#', NonTerminal('IDENT') )
+
 railroad(
-  textConnection(
-    "NonTerminal('IDENT'), '('"
-  )
+  Choice(0, 'u', 'U'),
+	Choice(0, 'r', 'R'),
+	Choice(0, 'l', 'L'),
+	'(',
+	Choice(1,
+		Optional(NonTerminal('WS')),
+		Sequence(
+			Optional(NonTerminal('WS')),
+			NonTerminal('STRING', '#string'),
+			Optional(NonTerminal('WS'))),
+		Sequence(
+			Optional(NonTerminal('WS')),
+			OneOrMore(
+				Choice(0,
+					NonTerminal('not " \\' ( ) WS or NPC'),
+          NonTerminal('escape'))),
+          Optional(NonTerminal('WS'))
+		    )
+		),
+  ')'
 )
 
 railroad(
-  "'@', NonTerminal('IDENT')"
-)
-
-railroad(
-  "'#', NonTerminal('IDENT')"
+" Choice(1, '+', Skip(), '-'),
+  Choice(0,
+         Sequence(
+           OneOrMore(NonTerminal('digit')),
+           '.',
+           OneOrMore(NonTerminal('digit'))),
+         OneOrMore(NonTerminal('digit')),
+         Sequence(
+           '.',
+           OneOrMore(NonTerminal('digit')))),
+  Choice(0,
+         Skip(),
+         Sequence(
+           Choice(0, 'e', 'E'),
+           Choice(1, '+', Skip(), '-'),
+           OneOrMore(NonTerminal('digit'))))
+"
 )
 }
 
