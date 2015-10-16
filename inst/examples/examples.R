@@ -54,7 +54,7 @@ railroad(
 )
 
 railroad(
-" Choice(1, '+', Skip(), '-'),
+  Choice(1, '+', Skip(), '-'),
   Choice(0,
          Sequence(
            OneOrMore(NonTerminal('digit')),
@@ -70,7 +70,7 @@ railroad(
            Choice(0, 'e', 'E'),
            Choice(1, '+', Skip(), '-'),
            OneOrMore(NonTerminal('digit'))))
-"
+
 )
 
 
