@@ -1,12 +1,28 @@
 Package: railroadR
 Title: Railroad Diagrams for R
 Version: 0.0.1
-Author: Kenton Russell
-Maintainer: Kenton Russell <kent.russell@timelyportfolio.com>
+Date: 2015-10-16
+Authors@R: c(
+      person(
+        "Tab", "Atkins Jr."
+        , role = c("aut", "cph")
+        , comment = "railroad-diagrams library in htmlwidgets/lib, https://github.com/tabatkins/railroad-diagrams"
+      ),
+      person(
+        "Kent", "Russell"
+        , role = c("aut", "cre")
+        , comment = "R interface"
+        , email = "kent.russell@timelyportfolio.com"
+      )
+    )
+Maintainer: Kent Russell <kent.russell@timelyportfolio.com>
 Description: Generate railroad diagrams in R with the convenience and infrastructure of htmlwidgets, or create static SVG railroad diagrams for use in non-htmlwidget situations.
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/timelyportfolio/railroadR
 BugReports: https://github.com/timelyportfolio/railroadR/issues
+Imports:
+    htmlwidgets
 Suggests: 
-    testthat
+    testthat,
+    V8
