@@ -1,0 +1,12 @@
+Package: railroadR
+Title: Railroad Diagrams for R
+Version: 0.0.1
+Author: Kenton Russell
+Maintainer: Kenton Russell <kent.russell@timelyportfolio.com>
+Description: Generate railroad diagrams in R with the convenience and infrastructure of htmlwidgets, or create static SVG railroad diagrams for use in non-htmlwidget situations.
+License: MIT + file LICENSE
+LazyData: true
+URL: https://github.com/timelyportfolio/railroadR
+BugReports: https://github.com/timelyportfolio/railroadR/issues
+Suggests: 
+    testthat
