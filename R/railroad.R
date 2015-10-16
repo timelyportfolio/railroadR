@@ -1,15 +1,26 @@
-#' <Add Title>
+#' Railroad Diagram
 #'
-#' <Add Description>
+#' Create interactive railroad diagrams for use in html.
+#' 
+#' @param diagram string or file connection providing the diagram spec
+#' @param width,height width and height in any valid CSS unit for
+#'                the htmlwidget container
 #'
+#' @example inst/examples/examples.R
 #' @import htmlwidgets
 #'
 #' @export
-railroad <- function(message, width = NULL, height = NULL) {
+railroad <- function(diagram, width = NULL, height = NULL) {
+  
+  # Check for a connection or file
+  if (inherits(diagram, "connection") || file.exists(diagram)){
+    diagram <- readLines(diagram, warn = FALSE)
+    diagram <- paste0(diagram, collapse = "\n")
+  }
 
   # forward options using x
   x = list(
-    message = message
+    diagram = diagram
   )
 
   # create widget

@@ -6,16 +6,15 @@ HTMLWidgets.widget({
 
   initialize: function(el, width, height) {
 
-    return {
-      // TODO: add instance fields as required
-    }
+    return { }
 
   },
 
   renderValue: function(el, x, instance) {
-
-    el.innerText = x.message;
-
+    // clean out el for dynamic / Shiny situations
+    el.innerHTML = ""
+    
+    Diagram(x.diagram).addTo(el);
   },
 
   resize: function(el, width, height, instance) {

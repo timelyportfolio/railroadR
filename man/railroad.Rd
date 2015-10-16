@@ -2,11 +2,42 @@
 % Please edit documentation in R/railroad.R
 \name{railroad}
 \alias{railroad}
-\title{<Add Title>}
+\title{Railroad Diagram}
 \usage{
-railroad(message, width = NULL, height = NULL)
+railroad(diagram, width = NULL, height = NULL)
+}
+\arguments{
+\item{diagram}{string or file connection providing the diagram spec}
+
+\item{width,height}{width and height in any valid CSS unit for
+               the htmlwidget container}
 }
 \description{
-<Add Description>
+Create interactive railroad diagrams for use in html.
+}
+\examples{
+library(railroadR)
+
+# examples from railroad-diagrams
+#   https://github.com/tabatkins/railroad-diagrams/blob/master/example.html
+
+railroad(
+  "NonTerminal('IDENT'), '('"
+)
+
+# can also provide a file or connection
+railroad(
+  textConnection(
+    "NonTerminal('IDENT'), '('"
+  )
+)
+
+railroad(
+  "'@', NonTerminal('IDENT')"
+)
+
+railroad(
+  "'#', NonTerminal('IDENT')"
+)
 }
 
